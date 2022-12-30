@@ -22,21 +22,21 @@ function MyApp({ Component, pageProps }) {
 
 
   const saveCart = (myCart) => {
-    localStorage.setItem('cart', myCart)
+    localStorage.setItem('cart', JSON.stringify(myCart))
     let subt = 0;
-    let keys = Object.keys(cart);
-    for(let i=0; keys.length; i++){
+    let keys = Object.keys(myCart);
+    for (let i = 0; i < keys.length; i++) {
       subt += myCart[keys[i]].price * myCart[keys[i]].qty
     }
     setSubTotal(subt)
   }
 
-  const addToCart = (itemCode, price, size, variant, qty, name) => {
+  const addToCart = (itemCode, qty, price, name, size, variant) => {
     let newCart = cart;
     if (itemCode in cart) {
       newCart[itemCode].qty = cart[itemCode].qty + qty
     } else {
-      newCart[itemCode] = { qty: 1, price, size, variant, qty, name }
+      newCart[itemCode] = { qty: 1, price, name, size, variant }
     }
     setCart(newCart)
     saveCart(newCart)
@@ -47,17 +47,21 @@ function MyApp({ Component, pageProps }) {
     saveCart({})
   }
 
-  const removeFromCart = (itemCode, price, size, variant, qty, name) => {
-    let newCart = cart;
+  const removeFromCart = (itemCode, qty, price, name, size, variant) => {
+    console.log(qty)
+    let newCart = JSON.parse(JSON.stringify(cart)) ;
     if (itemCode in cart) {
       newCart[itemCode].qty = cart[itemCode].qty - qty
     }
-    if (newCart[itemCode].qty <= 0) {
+    if (newCart[itemCode]['qty'] <= 0) {
       delete newCart[itemCode]
     }
+    console.log(newCart)
     setCart(newCart)
     saveCart(newCart)
+   
   }
+  
 
   return (
     <>

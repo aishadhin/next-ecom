@@ -4,7 +4,6 @@ import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinus
 
 const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
 
-  console.log(cart, addToCart, removeFromCart, clearCart, subTotal)
 
   const ref = useRef()
 
@@ -54,66 +53,24 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
             </h2>
             <span onClick={toggleCart} className="absolute cursor-pointer top-2 right-2"><AiFillCloseCircle /></span>
             <ol className="list-decimal">
-              <li>
-                <div className="flex gap-6">
-                  <span>T-shirt</span>
-                  <div className="flex gap-1 items-center">
-                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex gap-6">
-                  <span>T-shirt</span>
-                  <div className="flex gap-1 items-center">
-                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex gap-6">
-                  <span>T-shirt</span>
-                  <div className="flex gap-1 items-center">
-                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex gap-6">
-                  <span>T-shirt</span>
-                  <div className="flex gap-1 items-center">
-                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex gap-6">
-                  <span>T-shirt</span>
-                  <div className="flex gap-1 items-center">
-                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex gap-6">
-                  <span>T-shirt</span>
-                  <div className="flex gap-1 items-center">
-                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex gap-6">
-                  <span>T-shirt</span>
-                  <div className="flex gap-1 items-center">
-                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
-                  </div>
-                </div>
-              </li>
+            {
+                Object.keys(cart).length === 0 && <span>Cart is Empty.</span>
+            }
+              {
+                Object.keys(cart).map((k)=>{return <li key={k}>
+                    <div className="flex gap-6">
+                      <span>{cart[k].name}</span>
+                      <div className="flex gap-1 items-center">
+                      <AiFillMinusCircle onClick={() => { removeFromCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }} className="cursor-pointer" /><span className="">{cart[k].qty}</span><AiFillPlusCircle onClick={() => { addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }} className="cursor-pointer" />
+                      </div>
+                    </div>
+                  </li>
+                })
+              }
             </ol>
             <div className="flex">
               <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">Checkout</button>
-              <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
+              <button onClick={clearCart} className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
             </div>
           </div>
 

@@ -2,7 +2,10 @@ import Link from "next/link";
 import React, { useRef } from "react";
 import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 
-const Navbar = () => {
+const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
+
+  console.log(cart, addToCart, removeFromCart, clearCart, subTotal)
+
   const ref = useRef()
 
   const toggleCart = () => {

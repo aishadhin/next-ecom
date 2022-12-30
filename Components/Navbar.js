@@ -18,9 +18,9 @@ const Navbar = () => {
 
   return (
     <div>
-      <header class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <Link href="/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <header className="text-gray-600 body-font">
+        <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <Link href="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -28,18 +28,18 @@ const Navbar = () => {
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+              className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
               viewBox="0 0 24 24"
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span class="ml-3 text-xl">Tailblocks</span>
+            <span className="ml-3 text-xl">Tailblocks</span>
           </Link>
-          <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-            <Link href='/tshirt' class="mr-5 hover:text-gray-900">T-shirts</Link>
-            <Link href='/hoodies' class="mr-5 hover:text-gray-900">Hoodies</Link>
-            <Link href='/mugs' class="mr-5 hover:text-gray-900">Mugs</Link>
-            <Link href='/caps' class="mr-5 hover:text-gray-900">Caps</Link>
+          <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+            <Link href='/tshirt' className="mr-5 hover:text-gray-900">T-shirts</Link>
+            <Link href='/hoodies' className="mr-5 hover:text-gray-900">Hoodies</Link>
+            <Link href='/mugs' className="mr-5 hover:text-gray-900">Mugs</Link>
+            <Link href='/caps' className="mr-5 hover:text-gray-900">Caps</Link>
           </nav>
           <div onClick={toggleCart} className="cursor-pointer">
             <AiOutlineShoppingCart className="text-3xl" />
@@ -108,8 +108,12 @@ const Navbar = () => {
                 </div>
               </li>
             </ol>
-            <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Checkout</button>
+            <div className="flex">
+              <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">Checkout</button>
+              <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
+            </div>
           </div>
+
 
         </div>
       </header>

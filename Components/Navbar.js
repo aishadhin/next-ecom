@@ -1,8 +1,21 @@
 import Link from "next/link";
-import React from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import React, { useRef } from "react";
+import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 
 const Navbar = () => {
+  const ref = useRef()
+
+  const toggleCart = () => {
+    if (ref.current.classList.contains('translate-x-full')) {
+      ref.current.classList.remove('translate-x-full')
+      ref.current.classList.add('translate-x-0')
+    }
+    else if (!ref.current.classList.contains('translate-x-full')) {
+      ref.current.classList.remove('translate-x-0')
+      ref.current.classList.add('translate-x-full')
+    }
+  }
+
   return (
     <div>
       <header class="text-gray-600 body-font">
@@ -23,14 +36,81 @@ const Navbar = () => {
             <span class="ml-3 text-xl">Tailblocks</span>
           </Link>
           <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-            <Link href='/tshirt'class="mr-5 hover:text-gray-900">T-shirts</Link>
+            <Link href='/tshirt' class="mr-5 hover:text-gray-900">T-shirts</Link>
             <Link href='/hoodies' class="mr-5 hover:text-gray-900">Hoodies</Link>
             <Link href='/mugs' class="mr-5 hover:text-gray-900">Mugs</Link>
             <Link href='/caps' class="mr-5 hover:text-gray-900">Caps</Link>
           </nav>
-          <div>
-              <AiOutlineShoppingCart className="text-3xl" />
+          <div onClick={toggleCart} className="cursor-pointer">
+            <AiOutlineShoppingCart className="text-3xl" />
           </div>
+
+          <div ref={ref} className="absolute w-80 h-full transform top-0 right-0 p-10 transition-transform bg-indigo-100 translate-x-full sidecart">
+            <h2 className="pb-6 text-xl font-semibold">
+              Shopping Cart
+            </h2>
+            <span onClick={toggleCart} className="absolute cursor-pointer top-2 right-2"><AiFillCloseCircle /></span>
+            <ol className="list-decimal">
+              <li>
+                <div className="flex gap-6">
+                  <span>T-shirt</span>
+                  <div className="flex gap-1 items-center">
+                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="flex gap-6">
+                  <span>T-shirt</span>
+                  <div className="flex gap-1 items-center">
+                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="flex gap-6">
+                  <span>T-shirt</span>
+                  <div className="flex gap-1 items-center">
+                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="flex gap-6">
+                  <span>T-shirt</span>
+                  <div className="flex gap-1 items-center">
+                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="flex gap-6">
+                  <span>T-shirt</span>
+                  <div className="flex gap-1 items-center">
+                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="flex gap-6">
+                  <span>T-shirt</span>
+                  <div className="flex gap-1 items-center">
+                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="flex gap-6">
+                  <span>T-shirt</span>
+                  <div className="flex gap-1 items-center">
+                    <AiFillPlusCircle className="cursor-pointer" /><span className="">1</span><AiFillMinusCircle className="cursor-pointer" />
+                  </div>
+                </div>
+              </li>
+            </ol>
+            <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Checkout</button>
+          </div>
+
         </div>
       </header>
     </div>

@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React, { useRef } from "react";
 import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+import { RiAccountCircleFill } from "react-icons/ri";
 
-const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
+const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
 
   const ref = useRef()
@@ -43,25 +44,29 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
             <Link href='/mugs' className="mr-5 hover:text-gray-900">Mugs</Link>
             <Link href='/caps' className="mr-5 hover:text-gray-900">Caps</Link>
           </nav>
-          <div onClick={toggleCart} className="cursor-pointer">
-            <AiOutlineShoppingCart className="text-3xl" />
+          <div className="cursor-pointer flex">
+            <Link href={'/login'}>
+              <RiAccountCircleFill className="text-2xl mx-3" />
+            </Link>
+            <AiOutlineShoppingCart onClick={toggleCart} className="text-2xl" />
           </div>
 
-          <div ref={ref} className={`absolute w-80 h-[100vh] transform top-0 right-0 p-10 transition-transform bg-indigo-100 sidecart ${Object.keys(cart).length !== 0 ? 'translate-x-0' :'translate-x-full'}`}>
+          <div ref={ref} className={`absolute w-80 h-[100vh] transform top-0 right-0 p-10 transition-transform bg-indigo-100 sidecart ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'}`}>
             <h2 className="pb-6 text-xl font-semibold">
               Shopping Cart
             </h2>
             <span onClick={toggleCart} className="absolute cursor-pointer top-2 right-2"><AiFillCloseCircle /></span>
             <ol className="list-decimal">
-            {
-                Object.keys(cart).length === 0 && <span>Cart is Empty.</span>
-            }
               {
-                Object.keys(cart).map((k)=>{return <li key={k}>
+                Object.keys(cart).length === 0 && <span>Cart is Empty.</span>
+              }
+              {
+                Object.keys(cart).map((k) => {
+                  return <li key={k}>
                     <div className="flex gap-6">
                       <span>{cart[k].name}</span>
                       <div className="flex gap-1 items-center">
-                      <AiFillMinusCircle onClick={() => { removeFromCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }} className="cursor-pointer" /><span className="">{cart[k].qty}</span><AiFillPlusCircle onClick={() => { addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }} className="cursor-pointer" />
+                        <AiFillMinusCircle onClick={() => { removeFromCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }} className="cursor-pointer" /><span className="">{cart[k].qty}</span><AiFillPlusCircle onClick={() => { addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }} className="cursor-pointer" />
                       </div>
                     </div>
                   </li>
